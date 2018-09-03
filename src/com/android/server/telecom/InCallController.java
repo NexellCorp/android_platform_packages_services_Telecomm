@@ -30,7 +30,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
-import android.os.Trace;
+// import android.os.Trace;
 import android.os.UserHandle;
 import android.telecom.CallAudioState;
 import android.telecom.ConnectionService;
@@ -1076,7 +1076,7 @@ public final class InCallController extends CallsManagerListenerBase {
      * @return True if we successfully connected.
      */
     private boolean onConnected(InCallServiceInfo info, IBinder service) {
-        Trace.beginSection("onConnected: " + info.getComponentName());
+        // Trace.beginSection("onConnected: " + info.getComponentName());
         Log.i(this, "onConnected to %s", info.getComponentName());
 
         IInCallService inCallService = IInCallService.Stub.asInterface(service);
@@ -1091,7 +1091,7 @@ public final class InCallController extends CallsManagerListenerBase {
                             info.getComponentName().getPackageName()));
         } catch (RemoteException e) {
             Log.e(this, e, "Failed to set the in-call adapter.");
-            Trace.endSection();
+            // Trace.endSection();
             return false;
         }
 
@@ -1123,7 +1123,7 @@ public final class InCallController extends CallsManagerListenerBase {
         } catch (RemoteException ignored) {
         }
         Log.i(this, "%s calls sent to InCallService.", numCallsSent);
-        Trace.endSection();
+        // Trace.endSection();
         return true;
     }
 
