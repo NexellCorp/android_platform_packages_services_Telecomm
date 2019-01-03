@@ -30,7 +30,7 @@ import android.os.Process;
 import android.os.SystemClock;
 import android.os.SystemProperties;
 import android.os.SystemVibrator;
-import android.os.Trace;
+// import android.os.Trace;
 import android.os.UserHandle;
 import android.os.UserManager;
 import android.provider.CallLog.Calls;
@@ -1766,7 +1766,7 @@ public class CallsManager extends Call.ListenerBase
      * @param call The call to add.
      */
     private void addCall(Call call) {
-        Trace.beginSection("addCall");
+        // Trace.beginSection("addCall");
         Log.v(this, "addCall(%s)", call);
         call.addListener(this);
         mCalls.add(call);
@@ -1780,19 +1780,19 @@ public class CallsManager extends Call.ListenerBase
         updateCanAddCall();
         // onCallAdded for calls which immediately take the foreground (like the first call).
         for (CallsManagerListener listener : mListeners) {
-            if (Log.SYSTRACE_DEBUG) {
-                Trace.beginSection(listener.getClass().toString() + " addCall");
-            }
+            // if (Log.SYSTRACE_DEBUG) {
+                // Trace.beginSection(listener.getClass().toString() + " addCall");
+            // }
             listener.onCallAdded(call);
-            if (Log.SYSTRACE_DEBUG) {
+            // if (Log.SYSTRACE_DEBUG) {
                 Trace.endSection();
-            }
+            // }
         }
-        Trace.endSection();
+        // Trace.endSection();
     }
 
     private void removeCall(Call call) {
-        Trace.beginSection("removeCall");
+        // Trace.beginSection("removeCall");
         Log.v(this, "removeCall(%s)", call);
 
         call.setParentCall(null);  // need to clean up parent relationship before destroying.
@@ -1812,15 +1812,15 @@ public class CallsManager extends Call.ListenerBase
             updateCanAddCall();
             for (CallsManagerListener listener : mListeners) {
                 if (Log.SYSTRACE_DEBUG) {
-                    Trace.beginSection(listener.getClass().toString() + " onCallRemoved");
+                    // Trace.beginSection(listener.getClass().toString() + " onCallRemoved");
                 }
                 listener.onCallRemoved(call);
                 if (Log.SYSTRACE_DEBUG) {
-                    Trace.endSection();
+                    // Trace.endSection();
                 }
             }
         }
-        Trace.endSection();
+        // Trace.endSection();
     }
 
     /**
@@ -1847,21 +1847,21 @@ public class CallsManager extends Call.ListenerBase
             call.setState(newState, tag);
             maybeShowErrorDialogOnDisconnect(call);
 
-            Trace.beginSection("onCallStateChanged");
+            // Trace.beginSection("onCallStateChanged");
             // Only broadcast state change for calls that are being tracked.
             if (mCalls.contains(call)) {
                 updateCanAddCall();
                 for (CallsManagerListener listener : mListeners) {
-                    if (Log.SYSTRACE_DEBUG) {
-                        Trace.beginSection(listener.getClass().toString() + " onCallStateChanged");
-                    }
+                    // if (Log.SYSTRACE_DEBUG) {
+                    //     Trace.beginSection(listener.getClass().toString() + " onCallStateChanged");
+                    // }
                     listener.onCallStateChanged(call, oldState, newState);
-                    if (Log.SYSTRACE_DEBUG) {
-                        Trace.endSection();
-                    }
+                    // if (Log.SYSTRACE_DEBUG) {
+                    //     Trace.endSection();
+                    // }
                 }
             }
-            Trace.endSection();
+            // Trace.endSection();
         }
     }
 
@@ -1870,13 +1870,13 @@ public class CallsManager extends Call.ListenerBase
         if (newCanAddCall != mCanAddCall) {
             mCanAddCall = newCanAddCall;
             for (CallsManagerListener listener : mListeners) {
-                if (Log.SYSTRACE_DEBUG) {
-                    Trace.beginSection(listener.getClass().toString() + " updateCanAddCall");
-                }
+                // if (Log.SYSTRACE_DEBUG) {
+                    // Trace.beginSection(listener.getClass().toString() + " updateCanAddCall");
+                // }
                 listener.onCanAddCallChanged(mCanAddCall);
-                if (Log.SYSTRACE_DEBUG) {
-                    Trace.endSection();
-                }
+                // if (Log.SYSTRACE_DEBUG) {
+                //     Trace.endSection();
+                // }
             }
         }
     }

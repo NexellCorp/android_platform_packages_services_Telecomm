@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Trace;
+// import android.os.Trace;
 import android.os.UserHandle;
 import android.os.UserManager;
 import android.telecom.Connection;
@@ -77,13 +77,13 @@ public class CallIntentProcessor {
         final boolean isUnknownCall = intent.getBooleanExtra(KEY_IS_UNKNOWN_CALL, false);
         Log.i(this, "onReceive - isUnknownCall: %s", isUnknownCall);
 
-        Trace.beginSection("processNewCallCallIntent");
+        // Trace.beginSection("processNewCallCallIntent");
         if (isUnknownCall) {
             processUnknownCallIntent(mCallsManager, intent);
         } else {
             processOutgoingCallIntent(mContext, mCallsManager, intent);
         }
-        Trace.endSection();
+        // Trace.endSection();
     }
 
 

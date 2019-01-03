@@ -24,7 +24,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.RemoteException;
-import android.os.Trace;
+// import android.os.Trace;
 import android.provider.ContactsContract.Contacts;
 import android.telecom.CallAudioState;
 import android.telecom.Conference;
@@ -1887,7 +1887,7 @@ public class Call implements CreateConnectionResponse {
      * @param callerInfo The new caller information to set.
      */
     private void setCallerInfo(Uri handle, CallerInfo callerInfo) {
-        Trace.beginSection("setCallerInfo");
+        // Trace.beginSection("setCallerInfo");
         if (callerInfo == null) {
             Log.i(this, "CallerInfo lookup returned null, skipping update");
             return;
@@ -1908,7 +1908,7 @@ public class Call implements CreateConnectionResponse {
             }
         }
 
-        Trace.endSection();
+        // Trace.endSection();
     }
 
     public CallerInfo getCallerInfo() {
